@@ -1,6 +1,7 @@
 # Cadastro API
 
-This project will provide services for registering people.
+This project will provide services RESTFUL for registering people.
+Using the Spring, Hibernate, JPA and Jersey frameworks.
 
 ## Getting Started
 
@@ -28,8 +29,8 @@ db.properties:
 ```
 mysql.driver=com.mysql.jdbc.Driver
 mysql.url=jdbc:mysql://localhost:3306/cadastro-api
-mysql.user=root
-mysql.password=root
+mysql.user=<your user>
+mysql.password=<your password>
 ```
 
 ### Installing
