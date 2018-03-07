@@ -5,9 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import br.com.minervait.spring.controller.PessoaController;
+
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "br.com.minervait.spring.controller" })
+@ComponentScan(basePackageClasses = { PessoaController.class })
 public class ServletConfig extends WebMvcConfigurerAdapter {
 
 }
