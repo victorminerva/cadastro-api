@@ -1,16 +1,6 @@
 package br.com.minervait.spring.config;
 
-import static org.hibernate.cfg.AvailableSettings.C3P0_ACQUIRE_INCREMENT;
-import static org.hibernate.cfg.AvailableSettings.C3P0_MAX_SIZE;
-import static org.hibernate.cfg.AvailableSettings.C3P0_MAX_STATEMENTS;
-import static org.hibernate.cfg.AvailableSettings.C3P0_MIN_SIZE;
-import static org.hibernate.cfg.AvailableSettings.C3P0_TIMEOUT;
-import static org.hibernate.cfg.AvailableSettings.DRIVER;
-import static org.hibernate.cfg.AvailableSettings.HBM2DDL_AUTO;
-import static org.hibernate.cfg.AvailableSettings.PASS;
-import static org.hibernate.cfg.AvailableSettings.SHOW_SQL;
-import static org.hibernate.cfg.AvailableSettings.URL;
-import static org.hibernate.cfg.AvailableSettings.USER;
+import static org.hibernate.cfg.AvailableSettings.*;
 
 import java.util.Properties;
 
