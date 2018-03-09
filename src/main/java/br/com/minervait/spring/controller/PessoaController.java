@@ -28,28 +28,28 @@ public class PessoaController {
 		return ResponseEntity.ok().body("New Pessoa has been saved with ID:" + id);
 	}
 
-	/*---Get a book by id---*/
+	/*---Get a pessoa by id---*/
 	@GetMapping("/pessoa/{id}")
 	public ResponseEntity<Pessoa> get(@PathVariable("id") long id) {
 		Pessoa pessoa = pessoaService.get(id);
 		return ResponseEntity.ok().body(pessoa);
 	}
 
-	/*---Get all books---*/
+	/*---Get all pessoas---*/
 	@GetMapping("/pessoa")
 	public ResponseEntity<List<Pessoa>> list() {
-		List<Pessoa> books = pessoaService.list();
-		return ResponseEntity.ok().body(books);
+		List<Pessoa> pessoas = pessoaService.list();
+		return ResponseEntity.ok().body(pessoas);
 	}
 
-	/*---Update a book by id---*/
+	/*---Update a pessoa by id---*/
 	@PutMapping("/pessoa/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Pessoa pessoa) {
 		pessoaService.update(id, pessoa);
 		return ResponseEntity.ok().body("Pessoa has been updated successfully.");
 	}
 
-	/*---Delete a book by id---*/
+	/*---Delete a pessoa by id---*/
 	@DeleteMapping("/pessoa/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") long id) {
 		pessoaService.delete(id);
