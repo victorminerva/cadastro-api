@@ -58,11 +58,11 @@ CREATE SCHEMA CADASTRO-API;
 
 * **Victor Minerva** - [victorminerva](https://github.com/victorminerva)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/victorminerva/cadastro-api/graphs/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the Apache License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
