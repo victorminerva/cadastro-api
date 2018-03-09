@@ -43,7 +43,7 @@ mysql.password=<your password>
 CREATE SCHEMA CADASTRO-API;
 ```
  
-**Step 2.** Import your project cloned from git into IDE workspace.
+**Step 2.** Import your project as Existing Maven Projects to into IDE workspace.
 
 **Step 3.** Add the Tomcat 9 Server in your IDE and after that add the project into Tomcat.
 
