@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 * Eclipse IDE ([Download](http://www.eclipse.org/downloads/eclipse-packages/)) or another of the your preference.
 * MySQL Server Installed. ([Download](https://dev.mysql.com/downloads/mysql/))
 * Maven. ([Download](https://maven.apache.org/download.cgi))
-* Tomcat 9. ([Download](https://tomcat.apache.org/download-90.cgi))
+* (Optional) Tomcat 9. ([Download](https://tomcat.apache.org/download-90.cgi))
 * The project to your directory.
 ```
 git clone https://github.com/victorminerva/cadastro-api.git
@@ -45,9 +45,12 @@ CREATE SCHEMA CADASTRO-API;
  
 **Step 2.** Import your project as Existing Maven Projects to into IDE workspace.
 
-**Step 3.** Add the Tomcat 9 Server in your IDE and after that add the project into Tomcat.
+**Step 3.** Run Tomcat.
 
-**Step 4.** Run Tomcat.
+*Into your project directory through command line, execute the command bellow:*
+```
+mvn tomcat7:run
+```
 
 
 ## Built With
