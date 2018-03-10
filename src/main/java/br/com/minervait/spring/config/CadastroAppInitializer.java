@@ -6,7 +6,7 @@ public class CadastroAppInitializer extends AbstractAnnotationConfigDispatcherSe
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { RootConfig.class };
+		return new Class[] { JPAConfig.class };
 	}
 
 	@Override

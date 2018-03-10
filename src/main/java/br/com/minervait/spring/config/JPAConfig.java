@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScans(value = { @ComponentScan("br.com.minervait.spring.dao"),
 		@ComponentScan("br.com.minervait.spring.service") })
-public class RootConfig {
+public class JPAConfig {
 
 	@Autowired
 	private Environment env;
