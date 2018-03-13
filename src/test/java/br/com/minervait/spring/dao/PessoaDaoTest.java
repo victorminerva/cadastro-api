@@ -3,7 +3,6 @@ package br.com.minervait.spring.dao;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,16 +23,6 @@ import br.com.minervait.spring.model.Pessoa;
 @Transactional
 public class PessoaDaoTest {
 	
-	/**
-	 * Mensagem default para indicar quando o teste falhar e não levantar a exceção desejada.
-	 *
-	 * @see Assert#fail(String)
-	 *
-	 * @author Victor Minerva 
-	 */
-	private static final String MSG_FAIL_EXCEPTION = "Teste falhou. Exceção não levantada.";
-	
-
 	private Pessoa pessoa;
 	
 	@Autowired
@@ -53,8 +42,7 @@ public class PessoaDaoTest {
 			
 			assertNotNull(retorno);
 		} catch (Exception e) {
-			e.printStackTrace();
-//			fail(MSG_FAIL_EXCEPTION);
+			fail(e.getMessage());
 		}
 	}
 
