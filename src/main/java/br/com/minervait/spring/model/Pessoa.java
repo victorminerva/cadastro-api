@@ -1,13 +1,13 @@
 package br.com.minervait.spring.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "PESSOA")
+@Entity
 public class Pessoa implements Serializable {
 
 	/**
@@ -16,35 +16,114 @@ public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "CPF")
+	private Long cpf;
 
-	private String name;
-
-	private String cpf;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getCpf() {
+	@Column(name = "NOME_COMPLETO", nullable = false)
+	private String nomeCompleto;
+	
+	@Column(name = "NOME_MAE", nullable = false)
+	private String nomeMae;
+	
+	@Column(name = "DATA_NASCIMENTO", nullable = false)
+	private Date dataNascimento;
+	
+	@Column(name = "SEXO", nullable = false)
+	private String sexo;
+	
+	@Column(name = "RG")
+	private Long rg;
+	
+	@Column(name = "ESTADO_CIVIL", nullable = false)
+	private String estadoCivil;
+	
+	@Column(name = "UF_RG")
+	private String ufRg;
+	
+	@Column(name = "CIDADE_RG")
+	private String cidadeRg;
+	
+	@Column(name = "ID_ENDERECO", nullable = false)
+	private Endereco endereco;
+	
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getNomeCompleto() {
+		return nomeCompleto;
+	}
+
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
+	}
+
+	public String getNomeMae() {
+		return nomeMae;
+	}
+
+	public void setNomeMae(String nomeMae) {
+		this.nomeMae = nomeMae;
+	}
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public Long getRg() {
+		return rg;
+	}
+
+	public void setRg(Long rg) {
+		this.rg = rg;
+	}
+
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	public String getUfRg() {
+		return ufRg;
+	}
+
+	public void setUfRg(String ufRg) {
+		this.ufRg = ufRg;
+	}
+
+	public String getCidadeRg() {
+		return cidadeRg;
+	}
+
+	public void setCidadeRg(String cidadeRg) {
+		this.cidadeRg = cidadeRg;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 }
