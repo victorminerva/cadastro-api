@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.minervait.spring.config.JPAConfig;
 import br.com.minervait.spring.dao.PessoaDao;
@@ -19,11 +20,10 @@ import br.com.minervait.spring.service.PessoaService;
 import br.com.minervait.spring.service.PessoaServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
 @ContextConfiguration(classes = { JPAConfig.class })
 public class PessoaServiceTest {
 
-	private Pessoa pessoa;
-	
 	/**
 	 * Mensagem default para indicar quando o teste falhar e não levantar a exceção desejada.
 	 *
@@ -32,6 +32,8 @@ public class PessoaServiceTest {
 	 * @author Victor Minerva 
 	 */
 	private static final String MSG_FAIL_EXCEPTION = "Teste falhou. Exceção não levantada.";
+
+	private Pessoa pessoa;
 	
 	@Mock
 	private PessoaDao pessoaDao;
