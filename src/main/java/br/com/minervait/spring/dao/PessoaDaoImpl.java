@@ -22,7 +22,7 @@ public class PessoaDaoImpl implements PessoaDao {
 
 	public long save(Pessoa pessoa) {
 		sessionFactory.getCurrentSession().save(pessoa);
-		return pessoa.getId();
+		return pessoa.getCpf();
 	}
 
 	public Pessoa get(long id) {
@@ -42,7 +42,7 @@ public class PessoaDaoImpl implements PessoaDao {
 	public void update(long id, Pessoa pessoa) {
 		Session session = sessionFactory.getCurrentSession();
 		Pessoa pessoaTo = session.byId(Pessoa.class).load(id);
-		pessoaTo.setName(pessoa.getName());
+		pessoaTo.setNomeCompleto(pessoa.getNomeCompleto());
 		pessoaTo.setCpf(pessoa.getCpf());
 		session.flush();
 
