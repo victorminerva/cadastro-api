@@ -8,6 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * <p>
+ * The Endereco domain.
+ *
+ * @author Victor Minerva
+ * @since Mar 13, 2018.
+ */
 @Entity
 public class Endereco implements Serializable {
 
