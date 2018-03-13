@@ -5,8 +5,19 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
+import br.com.minervait.spring.enums.SexoEnum;
+
+/**
+ * <p>
+ * The Pessoa domain.
+ *
+ * @author Victor Minerva
+ * @since Mar 13, 2018.
+ */
 @Entity
 public class Pessoa implements Serializable {
 
@@ -21,31 +32,32 @@ public class Pessoa implements Serializable {
 
 	@Column(name = "NOME_COMPLETO", nullable = false)
 	private String nomeCompleto;
-	
+
 	@Column(name = "NOME_MAE", nullable = false)
 	private String nomeMae;
-	
+
 	@Column(name = "DATA_NASCIMENTO", nullable = false)
 	private Date dataNascimento;
-	
+
+	@Enumerated(EnumType.STRING)
 	@Column(name = "SEXO", nullable = false)
-	private String sexo;
-	
+	private SexoEnum sexo;
+
 	@Column(name = "RG")
 	private Long rg;
-	
+
 	@Column(name = "ESTADO_CIVIL", nullable = false)
 	private String estadoCivil;
-	
+
 	@Column(name = "UF_RG")
 	private String ufRg;
-	
+
 	@Column(name = "CIDADE_RG")
 	private String cidadeRg;
-	
+
 	@Column(name = "ID_ENDERECO", nullable = false)
 	private Endereco endereco;
-	
+
 	public Long getCpf() {
 		return cpf;
 	}
@@ -78,11 +90,11 @@ public class Pessoa implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getSexo() {
+	public SexoEnum getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(String sexo) {
+	public void setSexo(SexoEnum sexo) {
 		this.sexo = sexo;
 	}
 

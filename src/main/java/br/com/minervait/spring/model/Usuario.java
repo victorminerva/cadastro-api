@@ -6,6 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * <p>
+ * The Usuario domain.
+ *
+ * @author Victor Minerva
+ * @since Mar 13, 2018.
+ */
 @Entity
 public class Usuario implements Serializable {
 
