@@ -21,35 +21,35 @@ public class PessoaController {
 	@Autowired
 	private PessoaService pessoaService;
 
-	/*---Add new pessoa---*/
+	/*---Add new person---*/
 	@PostMapping("/pessoa")
 	public ResponseEntity<?> save(@RequestBody Pessoa pessoa) {
 		long id = pessoaService.save(pessoa);
 		return ResponseEntity.ok().body("New Pessoa has been saved with ID:" + id);
 	}
 
-	/*---Get a pessoa by id---*/
+	/*---Get a person by id---*/
 	@GetMapping("/pessoa/{id}")
 	public ResponseEntity<Pessoa> get(@PathVariable("id") long id) {
 		Pessoa pessoa = pessoaService.get(id);
 		return ResponseEntity.ok().body(pessoa);
 	}
 
-	/*---Get all pessoas---*/
+	/*---Get all persons---*/
 	@GetMapping("/pessoa")
 	public ResponseEntity<List<Pessoa>> list() {
 		List<Pessoa> pessoas = pessoaService.list();
 		return ResponseEntity.ok().body(pessoas);
 	}
 
-	/*---Update a pessoa by id---*/
+	/*---Update a person by id---*/
 	@PutMapping("/pessoa/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Pessoa pessoa) {
 		pessoaService.update(id, pessoa);
 		return ResponseEntity.ok().body("Pessoa has been updated successfully.");
 	}
 
-	/*---Delete a pessoa by id---*/
+	/*---Delete a person by id---*/
 	@DeleteMapping("/pessoa/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") long id) {
 		pessoaService.delete(id);
