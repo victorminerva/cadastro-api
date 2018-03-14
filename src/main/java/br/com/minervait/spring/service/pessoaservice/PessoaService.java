@@ -1,4 +1,4 @@
-package br.com.minervait.spring.service;
+package br.com.minervait.spring.service.pessoaservice;
 
 import java.util.List;
 

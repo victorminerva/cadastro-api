@@ -1,4 +1,4 @@
-package br.com.minervait.spring.service;
+package br.com.minervait.spring.service.pessoaservice;
 
 import static org.junit.Assert.*;
 
@@ -16,8 +16,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import br.com.minervait.spring.config.JPAConfig;
 import br.com.minervait.spring.dao.PessoaDao;
 import br.com.minervait.spring.model.Pessoa;
-import br.com.minervait.spring.service.PessoaService;
-import br.com.minervait.spring.service.PessoaServiceImpl;
+import br.com.minervait.spring.service.pessoaservice.PessoaService;
+import br.com.minervait.spring.service.pessoaservice.PessoaServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
