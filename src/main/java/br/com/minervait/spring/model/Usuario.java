@@ -22,12 +22,12 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "EMAIL")
-	private String email;
-	
-	@Column(name = "USUARIO_NOME", nullable = false)
+	@Column(name = "USUARIO_NOME")
 	private String usuarioNome;
-	
+
+	@Column(name = "EMAIL", nullable = false)
+	private String email;
+
 	@Column(name = "SENHA", nullable = false)
 	private String senha;
 
