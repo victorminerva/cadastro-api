@@ -1,4 +1,4 @@
-package br.com.minervait.spring.dao;
+package br.com.minervait.spring.dao.pessoadao;
 
 import java.util.List;
 

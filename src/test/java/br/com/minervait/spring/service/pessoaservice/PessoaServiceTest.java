@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.minervait.spring.config.JPAConfig;
-import br.com.minervait.spring.dao.PessoaDao;
+import br.com.minervait.spring.dao.pessoadao.PessoaDao;
 import br.com.minervait.spring.model.Pessoa;
 import br.com.minervait.spring.service.pessoaservice.PessoaService;
 import br.com.minervait.spring.service.pessoaservice.PessoaServiceImpl;

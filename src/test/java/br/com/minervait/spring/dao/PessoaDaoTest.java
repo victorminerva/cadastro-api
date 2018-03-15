@@ -14,6 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.minervait.spring.config.JPAConfig;
+import br.com.minervait.spring.dao.pessoadao.PessoaDao;
 import br.com.minervait.spring.model.Pessoa;
 
 @WebAppConfiguration

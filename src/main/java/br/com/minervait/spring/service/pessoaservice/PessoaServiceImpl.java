@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.minervait.spring.dao.PessoaDao;
+import br.com.minervait.spring.dao.pessoadao.PessoaDao;
 import br.com.minervait.spring.model.Pessoa;
 
 @Service
