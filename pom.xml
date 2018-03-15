@@ -135,7 +135,12 @@
 			<version>1.10.19</version>
 			<scope>test</scope>
 		</dependency>
-
+		<!-- Java Web Token Dependency -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.0</version>
+		</dependency>
 
 	</dependencies>
 
