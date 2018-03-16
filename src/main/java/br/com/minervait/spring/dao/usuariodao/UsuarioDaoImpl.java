@@ -4,6 +4,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	private CriteriaBuilder builder;
-
 	/** {@inheritDoc} */
 	@Override
 	public Long save(Usuario usuario) {
@@ -29,13 +28,15 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	/** {@inheritDoc} */
 	@Override
 	public Usuario findByEmail(final String email) {
-		builder = sessionFactory.getCriteriaBuilder();
-		final CriteriaQuery<Usuario> query = builder.createQuery(Usuario.class);
-		final Root<Usuario> root = query.from(Usuario.class);
-		query.select(root).where(builder.equal(root.get("email"), email));
+		Session session = sessionFactory.getCurrentSession();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaQuery<Usuario> criteriaQuery = criteriaBuilder.createQuery(Usuario.class);
+		
+		Root<Usuario> root = criteriaQuery.from(Usuario.class);
+		criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("email"), email));
 
-		final Query<Usuario> result = sessionFactory.getCurrentSession().createQuery(query);
-		final Usuario usuario = result.getSingleResult();
+		Query<Usuario> query = sessionFactory.getCurrentSession().createQuery(criteriaQuery);
+		Usuario usuario = query.getSingleResult();
 
 		return usuario;
 	}
