@@ -24,8 +24,8 @@ public class PessoaController {
 	/*---Add new person---*/
 	@PostMapping("/pessoa")
 	public ResponseEntity<?> save(@RequestBody Pessoa pessoa) {
-		long id = pessoaService.save(pessoa);
-		return ResponseEntity.ok().body("New Pessoa has been saved with ID:" + id);
+		long cpf = pessoaService.save(pessoa);
+		return ResponseEntity.ok().body("New Pessoa has been saved with ID:" + cpf);
 	}
 
 	/*---Get a person by id---*/
