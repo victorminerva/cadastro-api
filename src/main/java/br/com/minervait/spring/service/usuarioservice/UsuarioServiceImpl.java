@@ -1,5 +1,7 @@
 package br.com.minervait.spring.service.usuarioservice;
 
+import javax.persistence.NoResultException;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,27 +27,34 @@ public class UsuarioServiceImpl implements UsuarioService {
 	/** {@inheritDoc} */
 	@Override
 	public Long registerNewUser(Usuario usuario) throws EmailExistsException, ErrorSavingDataException {
-		if (emailExists(usuario.getEmail())) {
-			throw new EmailExistsException("Já existe uma conta para esse endereço de e-mail.");
-		}
-		// Encrypt the password
-		usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
-
 		try {
+			if (emailExists(usuario.getEmail())) {
+				throw new EmailExistsException("Já existe uma conta para esse endereço de e-mail.");
+			}
+			// Encrypt the password
+			usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
+
 			return usuarioDao.save(usuario);
 		} catch (final Exception e) {
-			logger.error("[registerNewUser] : " + e.getMessage());
+			logger.error("[registerNewUser] : " + e.getMessage(), e);
 			throw new ErrorSavingDataException("Erro ao cadastrar Usuário.");
 		}
 	}
 
 	private Boolean emailExists(String email) {
 		boolean emailExist = Boolean.FALSE;
-		final Usuario usuario = usuarioDao.findByEmail(email);
+		final Usuario usuario;
+		try {
+			usuario = usuarioDao.findByEmail(email);
 
-		if (usuario != null) {
-			emailExist = Boolean.TRUE;
+			if (usuario != null) {
+				emailExist = Boolean.TRUE;
+			}
+		} catch (final NoResultException e) {
+			logger.error("[emailExists] - Nenhum registro encontrado. ", e);
+			emailExist = Boolean.FALSE;
 		}
+
 		return emailExist;
 	}
 
