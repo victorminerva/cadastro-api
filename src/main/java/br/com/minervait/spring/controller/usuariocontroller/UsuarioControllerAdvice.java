@@ -15,14 +15,16 @@ import br.com.minervait.spring.model.ErrorMessage;
 @ControllerAdvice
 public class UsuarioControllerAdvice extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler(value = { ErrorSavingDataException.class })
-	protected ResponseEntity<?> saveError(RuntimeException ex, WebRequest request) {
+
+	@ExceptionHandler(value = { IllegalArgumentException.class })
+	protected ResponseEntity<?> emailNotInformed(RuntimeException ex, WebRequest request) {
 		final ErrorMessage error = ErrorMessage.builder()
 				.addErro(ex.getMessage())
-				.addStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-				.addStatusMessage(HttpStatus.INTERNAL_SERVER_ERROR.name())
+				.addStatusCode(HttpStatus.PRECONDITION_FAILED.value())
+				.addStatusMessage(HttpStatus.PRECONDITION_FAILED.name())
 				.build();
-		return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+
+		return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.PRECONDITION_FAILED, request);
 	}
 
 	@ExceptionHandler(value = { EmailExistsException.class })
@@ -36,4 +38,13 @@ public class UsuarioControllerAdvice extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.CONFLICT, request);
 	}
 
+	@ExceptionHandler(value = { ErrorSavingDataException.class })
+	protected ResponseEntity<?> saveError(RuntimeException ex, WebRequest request) {
+		final ErrorMessage error = ErrorMessage.builder()
+				.addErro(ex.getMessage())
+				.addStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+				.addStatusMessage(HttpStatus.INTERNAL_SERVER_ERROR.name())
+				.build();
+		return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+	}
 }

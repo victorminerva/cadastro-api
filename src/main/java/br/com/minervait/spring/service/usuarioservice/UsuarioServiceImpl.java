@@ -27,13 +27,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 	/** {@inheritDoc} */
 	@Override
 	public Long registerNewUser(Usuario usuario) throws EmailExistsException, ErrorSavingDataException {
-		try {
-			if (emailExists(usuario.getEmail())) {
-				throw new EmailExistsException("Já existe uma conta para esse endereço de e-mail.");
-			}
-			// Encrypt the password
-			usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
+		if (emailExists(usuario.getEmail())) {
+			throw new EmailExistsException("Já existe uma conta para esse endereço de e-mail.");
+		}
+		// Encrypt the password
+		usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
 
+		try {
 			return usuarioDao.save(usuario);
 		} catch (final Exception e) {
 			logger.error("[registerNewUser] : " + e.getMessage(), e);
@@ -42,6 +42,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	private Boolean emailExists(String email) {
+		if(email == null || "".equals(email)) {
+			throw new IllegalArgumentException("Email está nulo ou vazio.");
+		}
+
 		boolean emailExist = Boolean.FALSE;
 		final Usuario usuario;
 		try {
@@ -52,6 +56,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 			}
 		} catch (final NoResultException e) {
 			logger.error("[emailExists] - Nenhum registro encontrado. ", e);
+			emailExist = Boolean.FALSE;
+		} catch (final Exception e) {
+			logger.fatal("[emailExists] - Ocorreu uma exceção ao buscar dados email informado. ", e);
 			emailExist = Boolean.FALSE;
 		}
 
