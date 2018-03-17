@@ -1,4 +1,4 @@
-package br.com.minervait.spring.dao;
+package br.com.minervait.spring.dao.pessoadao;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
