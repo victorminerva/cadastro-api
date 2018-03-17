@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import br.com.minervait.spring.controller.PessoaController;
+import br.com.minervait.spring.controller.pessoacontroller.PessoaController;
 
 @Configuration
 @EnableWebMvc

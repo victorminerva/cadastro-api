@@ -1,4 +1,4 @@
-package br.com.minervait.spring.controller;
+package br.com.minervait.spring.controller.pessoacontroller;
 
 import java.util.List;
 
