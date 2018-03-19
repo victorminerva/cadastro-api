@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import javax.persistence.NoResultException;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,16 +19,35 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import br.com.minervait.spring.config.JPAConfig;
 import br.com.minervait.spring.dao.usuariodao.UsuarioDao;
-import br.com.minervait.spring.exception.ErrorSavingDataException;
 import br.com.minervait.spring.model.Usuario;
 
+/**
+ * <p>
+ * Unit test class for test the service class {@link UsuarioService}
+ * </p>
+ * <b>Unit tests naming strategy that one should follow for naming ours unit
+ * tests:</b>
+ *
+ * <pre>
+ * <code>should<b>ExpectedBehavior</b><code>When<b>StateUnderTest</b></code>
+ *
+ * e.g.:
+ *	- shouldThrowsExceptionWhenAgeLessThan18
+ *	- shouldFailToWithdrawMoneyForInvalidAccount
+ * </pre>
+ *
+ * @author Victor Minerva
+ * @since Mar 19, 2018.
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = { JPAConfig.class })
 public class UsuarioServiceTest {
 
 	/**
-	 * Mensagem default para indicar quando o teste falhar e não levantar a exceção desejada.
+	 * Mensagem default para indicar quando o teste falhar e não levantar a exceção
+	 * desejada.
 	 *
 	 * @see Assert#fail(String)
 	 *
@@ -48,7 +69,7 @@ public class UsuarioServiceTest {
 	}
 
 	@Before
-	public void inicializaUsuario() {
+	public void initUsuario() {
 		usuario = new Usuario();
 		usuario.setEmail("teste@gmail.com");
 		usuario.setUsuarioNome("testeusuario");
@@ -56,7 +77,7 @@ public class UsuarioServiceTest {
 	}
 
 	@Test
-	public void testSuccess_registerNewUser() {
+	public void shouldSuccessWhenRegisterNewUser() {
 
 		Mockito.when(usuarioDao.findByEmail(usuario.getEmail())).thenReturn(null);/* user not exists */
 		Mockito.when(usuarioDao.save(usuario)).thenReturn(1L);
@@ -74,30 +95,93 @@ public class UsuarioServiceTest {
 	}
 
 	@Test
-	public void testFail_registerNewUser_UserExistsForThisEmail() {
+	public void shouldThrowsErrorSavingDataExceptionWhenOccurredErrorWhenSaveDataInregisterNewUser() {
+
+		Mockito.when(usuarioDao.findByEmail(usuario.getEmail())).thenReturn(null);
+		Mockito.when(usuarioDao.save(usuario)).thenThrow(new RuntimeException());
+
+		try {
+			usuarioService.registerNewUser(usuario);
+
+		} catch (final Exception e) {
+			assertEquals("Erro ao cadastrar Usuário.", e.getMessage());
+		}
+	}
+
+	@Test
+	public void shouldThrowsEmailExistsExceptionWhenUserExistsForThisEmailInRegisterNewUser() {
 
 		Mockito.when(usuarioDao.findByEmail(usuario.getEmail())).thenReturn(usuario);/* user not exists */
 
 		try {
 			usuarioService.registerNewUser(usuario);
 
-			fail(MSG_FAIL_EXCEPTION);
 		} catch (final Exception e) {
 			assertEquals("Já existe uma conta para esse endereço de e-mail.", e.getMessage());
 		}
 	}
 
 	@Test
-	public void testFail_registerNewUser_ErrorWhenSaveData() {
-
-		Mockito.when(usuarioDao.findByEmail(usuario.getEmail())).thenThrow(new ErrorSavingDataException("Erro."));
+	public void shouldThrowsIllegalArgumentExceptionWhenEmailIsNullInRegisterNewUser() {
+		usuario.setEmail(null);
 
 		try {
 			usuarioService.registerNewUser(usuario);
 
-			fail(MSG_FAIL_EXCEPTION);
 		} catch (final Exception e) {
-			assertEquals("Erro.", e.getMessage());
+			assertEquals("Email está nulo ou vazio.", e.getMessage());
+		}
+	}
+
+	@Test
+	public void shouldThrowsIllegalArgumentExceptionWhenEmailIsEmptyInRegisterNewUser() {
+		usuario.setEmail("");
+
+		try {
+			usuarioService.registerNewUser(usuario);
+
+		} catch (final Exception e) {
+			assertEquals("Email está nulo ou vazio.", e.getMessage());
+		}
+	}
+
+	@Test
+	public void shouldThrowsIllegalArgumentExceptionWhenEmailIsInvalidInRegisterNewUser() {
+		usuario.setEmail("abbca@_invalid.com");
+
+		try {
+			usuarioService.registerNewUser(usuario);
+
+		} catch (final Exception e) {
+			assertEquals("Email inválido.", e.getMessage());
+		}
+	}
+
+	@Test
+	public void shouldCatchNoResultExceptionAndSaveNormallyWhenNotExistsUserForEmailInformedInRegisterNewUser() {
+		Mockito.when(usuarioDao.findByEmail(usuario.getEmail())).thenThrow(new NoResultException());
+		Mockito.when(usuarioDao.save(usuario)).thenReturn(1L);
+
+		try {
+			final Long id = usuarioService.registerNewUser(usuario);
+
+			assertNotNull(id);
+		} catch (final Exception e) {
+			fail(MSG_FAIL_EXCEPTION);
+		}
+	}
+
+	@Test
+	public void shouldCatchAnyExceptionAndSaveNormallyWhenNotExistsUserForEmailInformedInRegisterNewUser() {
+		Mockito.when(usuarioDao.findByEmail(usuario.getEmail())).thenThrow(new RuntimeException());
+		Mockito.when(usuarioDao.save(usuario)).thenReturn(1L);
+
+		try {
+			final Long id = usuarioService.registerNewUser(usuario);
+
+			assertNotNull(id);
+		} catch (final Exception e) {
+			fail(MSG_FAIL_EXCEPTION);
 		}
 	}
 

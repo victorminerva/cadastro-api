@@ -12,6 +12,7 @@ import br.com.minervait.spring.dao.usuariodao.UsuarioDao;
 import br.com.minervait.spring.exception.EmailExistsException;
 import br.com.minervait.spring.exception.ErrorSavingDataException;
 import br.com.minervait.spring.model.Usuario;
+import br.com.minervait.spring.util.CadastroUtils;
 
 @Service
 @Transactional(readOnly = false)
@@ -44,6 +45,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 	private Boolean emailExists(String email) {
 		if(email == null || "".equals(email)) {
 			throw new IllegalArgumentException("Email está nulo ou vazio.");
+		}
+		if (!CadastroUtils.isEmailValid(email)) {
+			throw new IllegalArgumentException("Email inválido.");
 		}
 
 		boolean emailExist = Boolean.FALSE;
