@@ -17,8 +17,8 @@ public class UsuarioController {
 
 	@PostMapping("/usuario")
 	public ResponseEntity<?> registerNewUser(@RequestBody Usuario usuario) {
-		final Long id = usuarioService.registerNewUser(usuario);
-		return ResponseEntity.ok("O usuário foi registrado com sucesso! " + id);
+		usuarioService.registerNewUser(usuario);
+		return ResponseEntity.ok("O usuário foi registrado com sucesso! ");
 	}
 
 }
