@@ -12,9 +12,8 @@ import br.com.minervait.spring.exception.EmailExistsException;
 import br.com.minervait.spring.exception.ErrorSavingDataException;
 import br.com.minervait.spring.model.ErrorMessage;
 
-@ControllerAdvice
+@ControllerAdvice(assignableTypes = { UsuarioController.class })
 public class UsuarioControllerAdvice extends ResponseEntityExceptionHandler {
-
 
 	@ExceptionHandler(value = { IllegalArgumentException.class })
 	protected ResponseEntity<?> emailNotInformed(RuntimeException ex, WebRequest request) {
