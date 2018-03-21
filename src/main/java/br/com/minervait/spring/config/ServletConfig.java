@@ -2,6 +2,7 @@ package br.com.minervait.spring.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -13,4 +14,8 @@ import br.com.minervait.spring.controller.usuariocontroller.UsuarioController;
 @ComponentScan(basePackageClasses = { UsuarioController.class, PessoaController.class })
 public class ServletConfig extends WebMvcConfigurerAdapter {
 
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/usuario").allowedOrigins("http://localhost:4200");
+	}
 }
