@@ -2,7 +2,7 @@ package br.com.minervait.spring.enums;
 
 public enum ConstantsEnum {
 
-	EMAIL("^[a-z]{1,6}_?\\d{0,4}@[a-z0-9.-]+\\.[a-z]{2,}$");
+	EMAIL("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
 
 	public String value;
 
